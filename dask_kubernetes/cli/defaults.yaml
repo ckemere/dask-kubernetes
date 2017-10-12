@@ -2,7 +2,7 @@ cluster:
   num_nodes: 3
   machine_type: n1-standard-8
   disk_size: 50
-  zone: us-east1-b
+  zone: us-central1-a
   autoscaling: False
   min_nodes: 2
   max_nodes: 32
@@ -11,11 +11,11 @@ jupyter:
   cpus: 1
   port: 8888
   lab_port: 8889
-  image: mdurant/dask-kubernetes:latest
+  image: ckemere/dockerfile
 scheduler:
   memory: 4096Mi
   cpus: 1
-  image: mdurant/dask-kubernetes:latest
+  image: ckemere/dockerfile
   tcp_port: 8786
   http_port: 9786
   bokeh_port: 8787
@@ -24,4 +24,4 @@ workers:
   cpus_per_worker: 1.8
   memory_per_worker: 6800Mi
   mem_factor: 0.95
-  image: mdurant/dask-kubernetes:latest
+  image: ckemere/dockerfile
