@@ -1,3 +1,9 @@
+from jupyter_core.paths import jupyter_data_dir
+import subprocess
+import os
+import errno
+import stat
+
 c = get_config()
 c.NotebookApp.password = u'sha1:e6888af5df44:e161f2e90fb7b03c52e979dfcf18f10353caef22'
 c.NotebookApp.ip = '0.0.0.0'

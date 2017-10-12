@@ -11,11 +11,11 @@ jupyter:
   cpus: 1
   port: 8888
   lab_port: 8889
-  image: ckemere/dockerfile
+  image: ckemere/dask-kubernetes:latest
 scheduler:
   memory: 4096Mi
   cpus: 1
-  image: ckemere/dockerfile
+  image: ckemere/dask-kubernetes:latest
   tcp_port: 8786
   http_port: 9786
   bokeh_port: 8787
@@ -24,4 +24,4 @@ workers:
   cpus_per_worker: 1.8
   memory_per_worker: 6800Mi
   mem_factor: 0.95
-  image: ckemere/dockerfile
+  image: ckemere/dask-kubernetes:latest
