@@ -1,10 +1,13 @@
-# Kubernetes provisioning of a Dask Distributed cluster
+# Kubernetes provisioning of a Dask Distributed cluster for Nelpy
 
 This repo hosts some sample configuration to set up Kubernetes containerized
 environments for interactive cluster computing in Python with [Jupyter
 notebook](http://jupyter.org/) [dask](http://dask.pydata.org/)
-and other tools from the PyData and SciPy
-ecosystems.
+and other tools from the PyData and SciPy ecosystems. To the original
+[dask-distributed](https://github.com/martindurant/dask-distributed)
+containers, we've added support for (nelpy)[https://github.com/nelpy/nelpy]
+and made some changes to enable Jupyter security and improve the container
+building process.
 
 *This is a work in progress*
 
