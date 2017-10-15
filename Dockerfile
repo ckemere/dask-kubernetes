@@ -5,7 +5,8 @@ RUN apt-get update && apt-get -yq dist-upgrade
 RUN apt-get update -yqq &&  \
     apt-get install -yqq bzip2 git wget \
               vim ca-certificates sudo locales fonts-liberation \
-              graphviz build-essential gcc python && \
+              libgl1-mesa-glx \
+              pkg-config graphviz build-essential gcc python && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -35,6 +36,11 @@ RUN chown $BASICUSER:users miniconda.sh
 
 USER $BASICUSER
 
+# Configure environment
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
+
 RUN mkdir -p /work/bin
 
 # Install Python 3 from miniconda - run as BASICUSER to get permissions right
@@ -49,11 +55,10 @@ ENV PATH="/work/bin:/work/miniconda/bin:$PATH"
 # Install pydata stack
 RUN conda config --set always_yes yes --set changeps1 no --set auto_update_conda no
 RUN conda install notebook psutil numpy pandas scikit-learn statsmodels pip numba \
-        scikit-image datashader holoviews nomkl matplotlib lz4 tornado
-RUN conda install -c conda-forge fastparquet s3fs zict python-blosc cytoolz dask distributed dask-searchcv gcsfs joblib \
+        scikit-image datashader holoviews nomkl matplotlib lz4 tornado joblib graphviz
+RUN conda install -c conda-forge fastparquet s3fs zict python-blosc cytoolz dask distributed dask-searchcv gcsfs \
  && conda clean -tipsy \
- && pip install git+https://github.com/dask/dask-glm.git --no-deps\
- && pip install graphviz
+ && pip install git+https://github.com/dask/dask-glm.git --no-deps
 
 RUN conda install -c conda-forge nodejs
 RUN conda install -c conda-forge jupyterlab jupyter_dashboards ipywidgets \
